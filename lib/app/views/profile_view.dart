@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../services/theme_service.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends GetView<ThemeService> {
   const ProfileView({super.key});
 
   @override
@@ -126,9 +128,7 @@ class ProfileView extends StatelessWidget {
                         title: 'Dark Mode',
                         trailingWidget: Switch(
                           value: isDark,
-                          onChanged: (value) {
-                            // TODO: Implement theme switching
-                          },
+                          onChanged: (value) => controller.switchTheme(),
                         ),
                         onTap: null,
                       ),
