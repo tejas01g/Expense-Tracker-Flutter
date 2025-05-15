@@ -34,12 +34,12 @@ class ProfileView extends GetView<ThemeService> {
                   end: Alignment.bottomRight,
                   colors: isDark
                       ? [
-                          theme.colorScheme.primary.withOpacity(0.8),
-                          theme.colorScheme.primary.withOpacity(0.6),
+                          theme.colorScheme.primary.withValues(alpha: 0.8),
+                          theme.colorScheme.primary.withValues(alpha: 0.6),
                         ]
                       : [
-                          theme.colorScheme.primary.withOpacity(0.7),
-                          theme.colorScheme.primary.withOpacity(0.5),
+                          theme.colorScheme.primary.withValues(alpha: 0.7),
+                          theme.colorScheme.primary.withValues(alpha: 0.5),
                         ],
                 ),
               ),
@@ -76,7 +76,7 @@ class ProfileView extends GetView<ThemeService> {
                   Text(
                     'john.doe@example.com',
                     style: theme.textTheme.bodyLarge?.copyWith(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                     ),
                   ),
                 ],
@@ -231,7 +231,7 @@ class ProfileView extends GetView<ThemeService> {
               ? Text(
                   trailing,
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 )
               : const Icon(Icons.chevron_right)),

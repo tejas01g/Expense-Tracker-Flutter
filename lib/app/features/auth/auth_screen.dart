@@ -50,7 +50,7 @@ class AuthScreen extends GetView<AuthController> {
                   Text(
                     'Sign in to continue',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                         ),
                     textAlign: TextAlign.center,
                   ),
@@ -58,7 +58,7 @@ class AuthScreen extends GetView<AuthController> {
                   // Auth Mode Toggle
                   Obx(() => Container(
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Row(
@@ -78,44 +78,44 @@ class AuthScreen extends GetView<AuthController> {
                       )),
                   const SizedBox(height: 32),
                   // Form Fields
-                  Obx(() => Column(
-                        children: [
-                          _buildTextField(
-                            context,
-                            controller: TextEditingController(text: controller.email.value),
-                            hintText: 'Email',
-                            prefixIcon: Icons.email_outlined,
-                            onChanged: (value) => controller.email.value = value,
-                            errorText: controller.emailError.value,
-                          ),
-                          const SizedBox(height: 16),
-                          _buildTextField(
-                            context,
-                            controller: TextEditingController(text: controller.password.value),
-                            hintText: 'Password',
-                            prefixIcon: Icons.lock_outline,
-                            isPassword: true,
-                            isPasswordVisible: controller.isPasswordVisible.value,
-                            onTogglePassword: controller.togglePasswordVisibility,
-                            onChanged: (value) => controller.password.value = value,
-                            errorText: controller.passwordError.value,
-                          ),
-                          if (!controller.isLogin.value) ...[
-                            const SizedBox(height: 16),
-                            _buildTextField(
-                              context,
-                              controller: TextEditingController(text: controller.confirmPassword.value),
-                              hintText: 'Confirm Password',
-                              prefixIcon: Icons.lock_outline,
-                              isPassword: true,
-                              isPasswordVisible: controller.isConfirmPasswordVisible.value,
-                              onTogglePassword: controller.toggleConfirmPasswordVisibility,
-                              onChanged: (value) => controller.confirmPassword.value = value,
-                              errorText: controller.confirmPasswordError.value,
-                            ),
-                          ],
-                        ],
+                  Column(
+                    children: [
+                      Obx(() => _buildTextField(
+                        context,
+                        controller: controller.emailController,
+                        hintText: 'Email',
+                        prefixIcon: Icons.email_outlined,
+                        onChanged: (value) => controller.email.value = value,
+                        errorText: controller.emailError.value.isNotEmpty ? controller.emailError.value : null,
                       )),
+                      const SizedBox(height: 16),
+                      Obx(() => _buildTextField(
+                        context,
+                        controller: controller.passwordController,
+                        hintText: 'Password',
+                        prefixIcon: Icons.lock_outline,
+                        isPassword: true,
+                        isPasswordVisible: controller.isPasswordVisible.value,
+                        onTogglePassword: controller.togglePasswordVisibility,
+                        onChanged: (value) => controller.password.value = value,
+                        errorText: controller.passwordError.value.isNotEmpty ? controller.passwordError.value : null,
+                      )),
+                      if (!controller.isLogin.value) ...[
+                        const SizedBox(height: 16),
+                        Obx(() => _buildTextField(
+                          context,
+                          controller: controller.confirmPasswordController,
+                          hintText: 'Confirm Password',
+                          prefixIcon: Icons.lock_outline,
+                          isPassword: true,
+                          isPasswordVisible: controller.isConfirmPasswordVisible.value,
+                          onTogglePassword: controller.toggleConfirmPasswordVisibility,
+                          onChanged: (value) => controller.confirmPassword.value = value,
+                          errorText: controller.confirmPasswordError.value.isNotEmpty ? controller.confirmPasswordError.value : null,
+                        )),
+                      ],
+                    ],
+                  ),
                   const SizedBox(height: 24),
                   // Remember Me & Forgot Password
                   Obx(() => controller.isLogin.value
@@ -135,7 +135,7 @@ class AuthScreen extends GetView<AuthController> {
                                 Text(
                                   'Remember Me',
                                   style: TextStyle(
-                                    color: Colors.white.withOpacity(0.8),
+                                    color: Colors.white.withValues(alpha: 0.8),
                                   ),
                                 ),
                               ],
@@ -189,7 +189,7 @@ class AuthScreen extends GetView<AuthController> {
                       Text(
                         'Or continue with',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -270,13 +270,13 @@ class AuthScreen extends GetView<AuthController> {
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-        prefixIcon: Icon(prefixIcon, color: Colors.white.withOpacity(0.5)),
+        hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
+        prefixIcon: Icon(prefixIcon, color: Colors.white.withValues(alpha: 0.5)),
         suffixIcon: isPassword
             ? IconButton(
                 icon: Icon(
                   isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                 ),
                 onPressed: onTogglePassword,
               )
@@ -284,7 +284,7 @@ class AuthScreen extends GetView<AuthController> {
         errorText: errorText,
         errorStyle: const TextStyle(color: Colors.red),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.1),
+        fillColor: Colors.white.withValues(alpha: 0.1),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
@@ -315,7 +315,7 @@ class AuthScreen extends GetView<AuthController> {
     required VoidCallback onPressed,
   }) {
     return Material(
-      color: Colors.white.withOpacity(0.1),
+      color: Colors.white.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(30),
       child: InkWell(
         onTap: onPressed,

@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/home_controller.dart';
-import '../../models/expense_model.dart';
 
 class ExpenseChart extends GetView<HomeController> {
   const ExpenseChart({super.key});
@@ -34,7 +33,7 @@ class ExpenseChart extends GetView<HomeController> {
                     child: Text(
                       'No data available',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   );

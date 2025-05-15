@@ -46,7 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '978563852270',
     projectId: 'expense-8429a',
     authDomain: 'expense-8429a.firebaseapp.com',
-    storageBucket: 'expense-8429a.firebasestorage.app',
+    storageBucket: 'expense-8429a.appspot.com',
     measurementId: 'G-ECTD30KSXV',
   );
 
@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
     appId: '1:978563852270:android:6a1ea2c650b709f42390ff',
     messagingSenderId: '978563852270',
     projectId: 'expense-8429a',
-    storageBucket: 'expense-8429a.firebasestorage.app',
+    storageBucket: 'expense-8429a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:978563852270:ios:3908ea72ec5929502390ff',
     messagingSenderId: '978563852270',
     projectId: 'expense-8429a',
-    storageBucket: 'expense-8429a.firebasestorage.app',
+    storageBucket: 'expense-8429a.appspot.com',
     iosBundleId: 'com.example.expenseTracker01',
   );
 
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     appId: '1:978563852270:ios:3908ea72ec5929502390ff',
     messagingSenderId: '978563852270',
     projectId: 'expense-8429a',
-    storageBucket: 'expense-8429a.firebasestorage.app',
+    storageBucket: 'expense-8429a.appspot.com',
     iosBundleId: 'com.example.expenseTracker01',
   );
 
@@ -82,7 +82,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '978563852270',
     projectId: 'expense-8429a',
     authDomain: 'expense-8429a.firebaseapp.com',
-    storageBucket: 'expense-8429a.firebasestorage.app',
+    storageBucket: 'expense-8429a.appspot.com',
     measurementId: 'G-XXRB3E3Z47',
   );
 }

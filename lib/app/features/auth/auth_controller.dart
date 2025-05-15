@@ -14,6 +14,11 @@ class AuthController extends GetxController {
   final isPasswordVisible = false.obs;
   final isConfirmPasswordVisible = false.obs;
 
+  // TextEditingControllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   // Error messages
   final emailError = ''.obs;
   final passwordError = ''.obs;
@@ -22,10 +27,21 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Check if user is already logged in
+    // Sync controllers with observables
+    emailController.addListener(() => email.value = emailController.text);
+    passwordController.addListener(() => password.value = passwordController.text);
+    confirmPasswordController.addListener(() => confirmPassword.value = confirmPasswordController.text);
     if (_authService.isLoggedIn) {
       Get.offAllNamed(Routes.HOME);
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.onClose();
   }
 
   void toggleAuthMode() {

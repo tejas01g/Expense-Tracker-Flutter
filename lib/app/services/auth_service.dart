@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class AuthService extends GetxService {
   final _isLoggedIn = false.obs;
   bool get isLoggedIn => _isLoggedIn.value;
+  bool get isAuthenticated => _isLoggedIn.value;
 
   Future<AuthService> init() async {
     // Initialize any necessary services

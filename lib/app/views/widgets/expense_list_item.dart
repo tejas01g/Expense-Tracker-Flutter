@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import '../../models/expense_model.dart';
-import '../../routes/app_routes.dart';
 import '../expense_detail_view.dart';
 
 class ExpenseListItem extends StatelessWidget {
@@ -41,7 +40,7 @@ class ExpenseListItem extends StatelessWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: expense.categoryColor.withOpacity(isDark ? 0.2 : 0.1),
+                    color: expense.categoryColor.withValues(alpha: isDark ? 0.2 : 0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Icon(
@@ -71,7 +70,7 @@ class ExpenseListItem extends StatelessWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: expense.categoryColor.withOpacity(0.1),
+                            color: expense.categoryColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
@@ -86,7 +85,7 @@ class ExpenseListItem extends StatelessWidget {
                         Text(
                           dateFormat.format(expense.date),
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurface.withOpacity(0.6),
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                           ),
                         ),
                       ],

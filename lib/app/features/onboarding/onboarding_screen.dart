@@ -78,7 +78,7 @@ class OnboardingScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: _currentPage.value == index
                               ? Colors.white
-                              : Colors.white.withOpacity(0.5),
+                              : Colors.white.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -196,7 +196,7 @@ class OnboardingScreen extends StatelessWidget {
                   child: Text(
                     page.description,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       fontSize: 16,
                     ),
                     textAlign: TextAlign.center,

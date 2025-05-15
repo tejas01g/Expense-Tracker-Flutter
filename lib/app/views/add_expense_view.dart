@@ -176,7 +176,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                                 color: isSelected
                                     ? entry.value['color'] as Color
                                     : (entry.value['color'] as Color)
-                                        .withOpacity(isDark ? 0.2 : 0.1),
+                                        .withValues(alpha: isDark ? 0.2 : 0.1),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
                                   color: isSelected
@@ -250,7 +250,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                             color: theme.colorScheme.surface,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: theme.colorScheme.outline.withOpacity(0.5),
+                              color: theme.colorScheme.outline.withValues(alpha: 0.5),
                             ),
                           ),
                           child: Row(

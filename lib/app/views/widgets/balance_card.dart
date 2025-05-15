@@ -23,18 +23,18 @@ class BalanceCard extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  theme.colorScheme.primary.withOpacity(0.8),
-                  theme.colorScheme.primary.withOpacity(0.6),
+                  theme.colorScheme.primary.withValues(alpha: 0.8),
+                  theme.colorScheme.primary.withValues(alpha: 0.6),
                 ]
               : [
-                  theme.colorScheme.primary.withOpacity(0.7),
-                  theme.colorScheme.primary.withOpacity(0.5),
+                  theme.colorScheme.primary.withValues(alpha: 0.7),
+                  theme.colorScheme.primary.withValues(alpha: 0.5),
                 ],
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.primary.withOpacity(0.2),
+            color: theme.colorScheme.primary.withValues(alpha: 0.2),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -51,7 +51,7 @@ class BalanceCard extends StatelessWidget {
                 Text(
                   'Total Balance',
                   style: theme.textTheme.titleMedium?.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                   ),
                 ),
                 Container(
@@ -60,7 +60,7 @@ class BalanceCard extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -93,7 +93,7 @@ class BalanceCard extends StatelessWidget {
                 Text(
                   '2.5% from last month',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                   ),
                 ),
               ],

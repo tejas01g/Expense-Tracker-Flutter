@@ -9,7 +9,6 @@ class HistoryView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +34,7 @@ class HistoryView extends GetView<HomeController> {
               color: theme.colorScheme.surface,
               boxShadow: [
                 BoxShadow(
-                  color: theme.colorScheme.shadow.withOpacity(0.1),
+                  color: theme.colorScheme.shadow.withValues(alpha: 0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -140,13 +139,13 @@ class HistoryView extends GetView<HomeController> {
                           Icon(
                             Icons.receipt_long,
                             size: 64,
-                            color: theme.colorScheme.primary.withOpacity(0.5),
+                            color: theme.colorScheme.primary.withValues(alpha: 0.5),
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No expenses found',
                             style: theme.textTheme.titleMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.6),
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -217,7 +216,6 @@ class HistoryView extends GetView<HomeController> {
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Padding(
       padding: const EdgeInsets.only(right: 8),
@@ -229,7 +227,7 @@ class HistoryView extends GetView<HomeController> {
           decoration: BoxDecoration(
             color: isSelected
                 ? theme.colorScheme.primary
-                : theme.colorScheme.primary.withOpacity(isDark ? 0.2 : 0.1),
+                : theme.colorScheme.primary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(

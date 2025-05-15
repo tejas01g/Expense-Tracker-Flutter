@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../../../app/theme/app_theme.dart';
 import '../../../app/services/theme_service.dart';
 import 'dashboard_controller.dart';
 
@@ -31,8 +30,8 @@ class DashboardScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Theme.of(context).colorScheme.primary.withOpacity(0.1),
-              Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+              Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+              Theme.of(context).colorScheme.secondary.withValues(alpha: 0.1),
             ],
           ),
         ),
@@ -159,7 +158,7 @@ class DashboardScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -285,7 +284,7 @@ class DashboardScreen extends StatelessWidget {
                         dotData: FlDotData(show: false),
                         belowBarData: BarAreaData(
                           show: true,
-                          color: Theme.of(Get.context!).colorScheme.primary.withOpacity(0.1),
+                          color: Theme.of(Get.context!).colorScheme.primary.withValues(alpha: 0.1),
                         ),
                       ),
                     ],

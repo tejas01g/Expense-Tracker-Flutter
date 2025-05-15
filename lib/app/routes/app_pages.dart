@@ -12,6 +12,7 @@ import '../features/auth/auth_controller.dart';
 import '../features/dashboard/dashboard_controller.dart';
 import '../controllers/home_controller.dart';
 import 'app_routes.dart';
+import '../views/category_management_view.dart';
 
 class AppPages {
   static const INITIAL = Routes.HOME;
@@ -40,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.ADD_EXPENSE,
-      page: () => const AddExpenseView(),
+      page: () => AddExpenseView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -62,6 +63,10 @@ class AppPages {
         expense: Get.arguments,
       ),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: '/category-management',
+      page: () => CategoryManagementView(),
     ),
   ];
 } 

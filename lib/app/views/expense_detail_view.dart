@@ -45,7 +45,11 @@ class ExpenseDetailView extends StatelessWidget {
               tag: 'expense_icon_${expense.id}',
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(32),
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width,
+                  maxHeight: MediaQuery.of(context).size.height * 0.4, // Limit hero height
+                ),
+                padding: EdgeInsets.all(MediaQuery.of(context).size.height < 600 ? 16 : 32),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -56,37 +60,48 @@ class ExpenseDetailView extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        shape: BoxShape.circle,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          shape: BoxShape.circle,
+                        ),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Icon(
+                            expense.categoryIcon,
+                            size: 48,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      child: Icon(
-                        expense.categoryIcon,
-                        size: 48,
-                        color: Colors.white,
+                      const SizedBox(height: 16),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          currencyFormat.format(expense.amount),
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      currencyFormat.format(expense.amount),
-                      style: theme.textTheme.headlineMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 8),
+                      Text(
+                        expense.description,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.8),
+                        ),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      expense.description,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.8),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -140,7 +155,7 @@ class ExpenseDetailView extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
         side: BorderSide(
-          color: theme.dividerColor.withOpacity(0.1),
+          color: theme.dividerColor.withValues(alpha: 0.1),
         ),
       ),
       child: Padding(
@@ -150,7 +165,7 @@ class ExpenseDetailView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: (iconColor ?? theme.primaryColor).withOpacity(isDark ? 0.2 : 0.1),
+                color: (iconColor ?? theme.primaryColor).withValues(alpha: isDark ? 0.2 : 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -167,7 +182,7 @@ class ExpenseDetailView extends StatelessWidget {
                   Text(
                     title,
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
                   const SizedBox(height: 4),
