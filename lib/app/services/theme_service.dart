@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ThemeService extends GetxService {
+class ThemeService extends GetxController {
   final _box = GetStorage();
   final _key = 'isDarkMode';
 
@@ -11,16 +11,16 @@ class ThemeService extends GetxService {
 
   void saveTheme(bool isDarkMode) => _box.write(_key, isDarkMode);
 
-  void changeThemeMode(ThemeMode themeMode) {
-    Get.changeThemeMode(themeMode);
-    saveTheme(themeMode == ThemeMode.dark);
+  void changeTheme(ThemeMode theme) {
+    Get.changeThemeMode(theme);
+    saveTheme(theme == ThemeMode.dark);
   }
 
   void switchTheme() {
     if (Get.isDarkMode) {
-      changeThemeMode(ThemeMode.light);
+      changeTheme(ThemeMode.light);
     } else {
-      changeThemeMode(ThemeMode.dark);
+      changeTheme(ThemeMode.dark);
     }
   }
 } 

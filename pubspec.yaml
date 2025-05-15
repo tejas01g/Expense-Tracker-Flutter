@@ -1,5 +1,5 @@
 name: expense_tracker
-description: A professional expense tracker app with modern UI.
+description: A beautiful expense tracking app with modern UI.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -35,7 +35,18 @@ dependencies:
   fl_chart: ^0.65.0
   google_fonts: ^6.1.0
   intl: ^0.19.0
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.2
+  
+  # Firebase
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  cloud_firestore: ^4.13.6
+  firebase_core_web: ^2.10.0
+  firebase_auth_web: ^5.8.12
+  cloud_firestore_web: ^3.8.10
+  js: ^0.6.7
+  firebase_core_platform_interface: ^5.0.0
+  firebase_auth_platform_interface: ^7.0.9
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -63,9 +74,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "978563852270",
+    "project_id": "expense-8429a",
+    "storage_bucket": "expense-8429a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978563852270:android:6a1ea2c650b709f42390ff",
+        "android_client_info": {
+          "package_name": "com.example.expense_tracker01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbOq-fxdpDHYKpNZjHOZrbd2yQZ6HgDSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978563852270:android:2daafea0491575562390ff",
+        "android_client_info": {
+          "package_name": "com.netlnk.expense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbOq-fxdpDHYKpNZjHOZrbd2yQZ6HgDSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
