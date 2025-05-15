@@ -6,4 +6,5 @@ class Routes {
   static const HISTORY = '/history';
   static const PROFILE = '/profile';
   static const DASHBOARD = '/dashboard';
+  static const EXPENSE_DETAIL = '/expense-detail';
 } 

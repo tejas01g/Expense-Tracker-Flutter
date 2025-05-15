@@ -3,45 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Custom colors
-  static const primaryLight = Color(0xFF6750A4);
-  static const primaryDark = Color(0xFFD0BCFF);
-  static const secondaryLight = Color(0xFF625B71);
-  static const secondaryDark = Color(0xFFCCC2DC);
+  static const Color primaryLight = Color(0xFF6C63FF);
+  static const Color secondaryLight = Color(0xFF4CAF50);
+  static const Color primaryDark = Color(0xFF8B85FF);
+  static const Color secondaryDark = Color(0xFF66BB6A);
   static const surfaceLight = Color(0xFFFFFBFE);
   static const surfaceDark = Color(0xFF1C1B1F);
 
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryLight,
-      brightness: Brightness.light,
+    brightness: Brightness.light,
+    colorScheme: ColorScheme.light(
       primary: primaryLight,
       secondary: secondaryLight,
-      surface: surfaceLight,
     ),
-    textTheme: GoogleFonts.interTextTheme().copyWith(
-      displayLarge: GoogleFonts.poppins(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-      ),
-      displayMedium: GoogleFonts.poppins(
-        fontSize: 24,
-        fontWeight: FontWeight.w600,
-      ),
-      titleLarge: GoogleFonts.poppins(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      bodyLarge: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
+    textTheme: GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
     appBarTheme: const AppBarTheme(
-      centerTitle: true,
+      backgroundColor: primaryLight,
+      foregroundColor: Colors.white,
       elevation: 0,
-      backgroundColor: surfaceLight,
-      foregroundColor: primaryLight,
     ),
     cardTheme: CardTheme(
       elevation: 2,
@@ -77,11 +57,8 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        backgroundColor: primaryLight,
+        foregroundColor: Colors.white,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -94,40 +71,16 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryDark,
-      brightness: Brightness.dark,
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark(
       primary: primaryDark,
       secondary: secondaryDark,
-      surface: surfaceDark,
     ),
-    textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme).copyWith(
-      displayLarge: GoogleFonts.poppins(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      displayMedium: GoogleFonts.poppins(
-        fontSize: 24,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
-      ),
-      titleLarge: GoogleFonts.poppins(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
-      ),
-      bodyLarge: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: Colors.white,
-      ),
-    ),
+    textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
     appBarTheme: const AppBarTheme(
-      centerTitle: true,
+      backgroundColor: primaryDark,
+      foregroundColor: Colors.white,
       elevation: 0,
-      backgroundColor: surfaceDark,
-      foregroundColor: primaryDark,
     ),
     cardTheme: CardTheme(
       elevation: 2,
@@ -163,11 +116,8 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        backgroundColor: primaryDark,
+        foregroundColor: Colors.white,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

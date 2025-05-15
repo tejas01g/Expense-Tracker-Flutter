@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../app/routes/app_routes.dart';
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({Key? key}) : super(key: key);
@@ -34,6 +35,20 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          // Background gradient
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  AppTheme.primaryLight,
+                  AppTheme.secondaryLight,
+                ],
+              ),
+            ),
+          ),
+          // Page content
           PageView.builder(
             controller: _pageController,
             itemCount: _pages.length,
@@ -42,12 +57,14 @@ class OnboardingScreen extends StatelessWidget {
               return _buildPage(_pages[index]);
             },
           ),
+          // Bottom controls
           Positioned(
             bottom: 50,
             left: 0,
             right: 0,
             child: Column(
               children: [
+                // Page indicators
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -60,8 +77,8 @@ class OnboardingScreen extends StatelessWidget {
                         width: _currentPage.value == index ? 24 : 8,
                         decoration: BoxDecoration(
                           color: _currentPage.value == index
-                              ? AppTheme.primaryLight
-                              : Colors.grey[300],
+                              ? Colors.white
+                              : Colors.white.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -69,17 +86,18 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
+                // Navigation buttons
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
-                        onPressed: () => Get.offAllNamed('/auth'),
-                        child: Text(
+                        onPressed: () => Get.offAllNamed(Routes.AUTH),
+                        child: const Text(
                           'Skip',
                           style: TextStyle(
-                            color: AppTheme.secondaryLight,
+                            color: Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -87,7 +105,7 @@ class OnboardingScreen extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           if (_currentPage.value == _pages.length - 1) {
-                            Get.offAllNamed('/auth');
+                            Get.offAllNamed(Routes.AUTH);
                           } else {
                             _pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
@@ -96,8 +114,8 @@ class OnboardingScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.primaryLight,
-                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          foregroundColor: AppTheme.primaryLight,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 32,
                             vertical: 16,
@@ -106,17 +124,15 @@ class OnboardingScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        child: Obx(
-                          () => Text(
-                            _currentPage.value == _pages.length - 1
-                                ? 'Get Started'
-                                : 'Next',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        child: Obx(() => Text(
+                          _currentPage.value == _pages.length - 1
+                              ? 'Get Started'
+                              : 'Next',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
                           ),
-                        ),
+                        )),
                       ),
                     ],
                   ),
@@ -130,43 +146,64 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   Widget _buildPage(OnboardingPage page) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Hero animation for the icon
           Hero(
-            tag: page.image,
-            child: Container(
-              height: Get.height * 0.4,
-              width: Get.height * 0.4,
-              decoration: BoxDecoration(
-                color: AppTheme.primaryLight.withOpacity(0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                page.icon,
-                size: Get.height * 0.2,
-                color: AppTheme.primaryLight,
-              ),
+            tag: page.icon.codePoint,
+            child: Icon(
+              page.icon,
+              size: 120,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 48),
-          Text(
-            page.title,
-            style: Theme.of(Get.context!).textTheme.displayMedium?.copyWith(
-                  color: AppTheme.primaryLight,
-                  fontWeight: FontWeight.bold,
+          // Title with animation
+          TweenAnimationBuilder(
+            duration: const Duration(milliseconds: 500),
+            tween: Tween<double>(begin: 0, end: 1),
+            builder: (context, double value, child) {
+              return Transform.translate(
+                offset: Offset(0, 20 * (1 - value)),
+                child: Opacity(
+                  opacity: value,
+                  child: Text(
+                    page.title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-            textAlign: TextAlign.center,
+              );
+            },
           ),
           const SizedBox(height: 16),
-          Text(
-            page.description,
-            style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.secondaryLight,
+          // Description with animation
+          TweenAnimationBuilder(
+            duration: const Duration(milliseconds: 500),
+            tween: Tween<double>(begin: 0, end: 1),
+            builder: (context, double value, child) {
+              return Transform.translate(
+                offset: Offset(0, 20 * (1 - value)),
+                child: Opacity(
+                  opacity: value,
+                  child: Text(
+                    page.description,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-            textAlign: TextAlign.center,
+              );
+            },
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../services/theme_service.dart';
+import '../routes/app_routes.dart';
 
 class ProfileView extends GetView<ThemeService> {
   const ProfileView({super.key});
@@ -156,7 +157,7 @@ class ProfileView extends GetView<ThemeService> {
                   const SizedBox(height: 24),
                   OutlinedButton.icon(
                     onPressed: () {
-                      // TODO: Implement logout
+                      Get.offAllNamed(Routes.HOME);
                     },
                     icon: const Icon(Icons.logout),
                     label: const Text('Logout'),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import '../../models/expense_model.dart';
+import '../../routes/app_routes.dart';
+import '../expense_detail_view.dart';
 
 class ExpenseListItem extends StatelessWidget {
   final ExpenseModel expense;
@@ -22,25 +25,30 @@ class ExpenseListItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: InkWell(
-        onTap: () {
-          // TODO: Implement expense details view
-        },
+        onTap: () => Get.to(
+          () => ExpenseDetailView(expense: expense),
+          transition: Transition.rightToLeft,
+          duration: const Duration(milliseconds: 300),
+        ),
         borderRadius: BorderRadius.circular(20),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: expense.categoryColor.withOpacity(isDark ? 0.2 : 0.1),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Icon(
-                  expense.categoryIcon,
-                  color: expense.categoryColor,
-                  size: 24,
+              Hero(
+                tag: 'expense_icon_${expense.id}',
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: expense.categoryColor.withOpacity(isDark ? 0.2 : 0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Icon(
+                    expense.categoryIcon,
+                    color: expense.categoryColor,
+                    size: 24,
+                  ),
                 ),
               ),
               const SizedBox(width: 16),

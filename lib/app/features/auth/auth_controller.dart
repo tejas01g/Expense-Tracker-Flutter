@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../app/services/auth_service.dart';
 import '../../../app/routes/app_routes.dart';
 
@@ -23,16 +22,8 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Check if user is already authenticated
-    if (_authService.isAuthenticated) {
-      Get.offAllNamed(Routes.HOME);
-    }
-    // Listen to auth state changes
-    _authService.user.listen(_handleAuthChanged);
-  }
-
-  void _handleAuthChanged(User? user) {
-    if (user != null) {
+    // Check if user is already logged in
+    if (_authService.isLoggedIn) {
       Get.offAllNamed(Routes.HOME);
     }
   }
@@ -116,7 +107,7 @@ class AuthController extends GetxController {
             password.value,
           );
         }
-        // Navigation is handled by _handleAuthChanged
+        Get.offAllNamed(Routes.HOME);
       } catch (e) {
         Get.snackbar(
           'Error',
@@ -138,10 +129,10 @@ class AuthController extends GetxController {
 
     try {
       isLoading.value = true;
-      await _authService.resetPassword(email.value);
+      await _authService.sendPasswordResetEmail(email.value);
       Get.snackbar(
         'Success',
-        'Password reset instructions sent to your email',
+        'Password reset email sent. Please check your inbox.',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         colorText: Colors.white,

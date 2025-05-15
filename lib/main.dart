@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'firebase_options.dart';
+import 'package:get_storage/get_storage.dart';
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
 import 'app/services/auth_service.dart';
+import 'app/services/theme_service.dart';
 import 'app/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase with the generated options
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // Initialize GetStorage
+  await GetStorage.init();
   
-  // Initialize Auth Service
+  // Initialize Services
   await Get.putAsync(() => AuthService().init());
+  await Get.putAsync(() => ThemeService().init());
   
   runApp(const MyApp());
 }
@@ -27,14 +25,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
+    
     return GetMaterialApp(
       title: 'Expense Tracker',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      initialRoute: FirebaseAuth.instance.currentUser != null 
-          ? Routes.HOME 
-          : Routes.AUTH,
+      themeMode: themeService.theme,
+      initialRoute: Routes.HOME,
       getPages: AppPages.routes,
       defaultTransition: Transition.fade,
       debugShowCheckedModeBanner: false,
